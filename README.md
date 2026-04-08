@@ -1,4 +1,4 @@
-Proposta de solució del Projecte
+PROPOSTA DE SOLUCIO DEL PROJECTE
 
 1. Objectius i Abast del Projecte
 L'objectiu principal és informatitzar la gestió de l'hospital per substituir el sistema actual basat en paper. La solució se centrarà en:
