@@ -1,0 +1,1 @@
+Planificació Jira: https://sapalomera-team-ty16i4u.atlassian.net/?continue=https%3A%2F%2Fsapalomera-team-ty16i4u.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10000&atlOrigin=eyJpIjoiNjljMjM5NGJiOTM1NGFlYmE5NDhkMTA2MDE2NzAzZDAiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
