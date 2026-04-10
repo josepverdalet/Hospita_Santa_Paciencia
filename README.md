@@ -46,4 +46,5 @@ L'aplicació es dividirà en quatre mòduls principals.
 
 Planificació Jira: https://sapalomera-team-ty16i4u.atlassian.net/?continue=https%3A%2F%2Fsapalomera-team-ty16i4u.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10000&atlOrigin=eyJpIjoiNjljMjM5NGJiOTM1NGFlYmE5NDhkMTA2MDE2NzAzZDAiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
 
-Diari de Sessions: https://docs.google.com/document/d/1Dq-6CQerI-lkcduIygQxjoOpVIEm6jtwQcNSp8GSU2Y/edit?usp=sharing
+Diari de Sessions Alex: https://docs.google.com/spreadsheets/d/1wGJtMcrdDoTBQ4ITrkppQsXJUYFk2jB9/edit?usp=sharing&ouid=109898516658622937746&rtpof=true&sd=true
+Diari de Sessions Josep: https://docs.google.com/spreadsheets/d/1XyuroRwlKfDCzt_e72mNTdLGLxWAIDvC/edit?gid=1097373687#gid=1097373687
