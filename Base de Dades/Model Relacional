@@ -1,1 +1,115 @@
+TREBALLADOR(
+    id_empleat PK,
+    dni,
+    nom,
+    cognom,
+    telefon,
+    direccio
+)
 
+MEDIC(
+    id_empleat PK FK → TREBALLADOR,
+    especialitat,
+    estudi,
+    cv
+)
+
+INFERMERIA(
+    id_empleat PK FK → TREBALLADOR,
+    experiencia,
+    disponibilitat
+)
+
+VARI(
+    id_empleat PK FK → TREBALLADOR,
+    tipus_feina
+)
+
+PACIENT(
+    id_pacient PK,
+    dni,
+    nom,
+    cognom,
+    telefon
+)
+HABITACIO(
+    id_habitacio PK,
+    numero,
+    capacitat
+    id_planta FK → PLANTA
+)
+
+RESERVA(
+    id_reserva PK,
+    dia_ingres,
+    hora_ingres,
+    dia_sortida,
+    hora_sortida,
+    motiu,
+    id_habitacio FK → HABITACIO,
+    id_pacient FK → PACIENT
+    id_quirofan FK → QUIROFAN
+    id_medic Fk → MEDIC
+)
+
+MEDICAMENT(
+    id_medicament PK,
+    nom,
+    stock
+)
+
+VISITA(
+    id_visita PK,
+    dia,
+    hora,
+    diagnostic,
+    id_pacient FK → PACIENT,
+    id_empleat FK → MEDIC
+)
+
+OPERACIO(
+    id_operacio PK,
+    nom,
+    tipus,
+    id_quirofan FK → QUIROFAN
+    id_pacient FK → PACIENT
+    id_medic FK → MEDIC
+)
+
+QUIROFAN(
+    id_quirofan PK,
+    tipus,
+    id_planta FK → PLANTA
+)
+
+PLANTA(
+    id_planta PK,
+    numero,
+    tipus
+    id_infermeria FK → INFERMERIA
+)
+
+APARELL_MEDIC(
+    id_serie PK,
+    tipus,
+    quantitat,
+    id_quirofan FK → QUIROFAN
+)
+
+RECEPTA(
+    id_medicament FK → MEDICAMENT,
+    id_visita FK → VISITA,
+    PRIMARY KEY (id_medicament, id_visita)
+)
+
+ASSISTEIX(
+    id_empleat FK → INFERMERIA,
+    id_operacio FK → OPERACIO,
+    PRIMARY KEY (id_empleat, id_operacio)
+)
+
+ASSIGNA(
+    id_empleat FK → INFERMERIA,
+    id_planta FK → PLANTA,
+    PRIMARY KEY (id_empleat, id_planta)
+)
