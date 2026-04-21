@@ -1,5 +1,3 @@
-BEGIN;
-
 CREATE SCHEMA IF NOT EXISTS hospital;
 
 SET search_path TO hospital;
@@ -131,5 +129,3 @@ CREATE TABLE ASSIGNA (
     FOREIGN KEY (id_empleat) REFERENCES INFERMERIA(id_empleat),
     FOREIGN KEY (id_planta) REFERENCES PLANTA(id_planta)
 );
-
-COMMIT;
