@@ -1,3 +1,8 @@
+```
+cd /etc/postgresql/15/main
+```
+
+
 ```bash
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
   -keyout /etc/postgresql/ssl/server.key \
