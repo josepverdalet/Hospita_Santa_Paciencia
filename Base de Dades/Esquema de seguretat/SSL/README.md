@@ -1,3 +1,13 @@
+Aquesta comanda crea el certificat (.crt) i la clau privada (.key) alhora:
+
+```
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
+  -keyout /etc/postgresql/ssl/server.key \
+  -out /etc/postgresql/ssl/server.crt \
+  -subj "/CN=192.168.56.102"
+```
+
+
 Guia de Configuració SSL per a PostgreSQL Aquest document detalla com preparar i automatitzar la seguretat SSL al servidor.
 1. Preparació de carpetes i permisos Primer creem el directori on es guardaran els certificats i assignem la propietat a l'usuari
    postgres:
