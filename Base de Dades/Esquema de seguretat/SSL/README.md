@@ -6,6 +6,39 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
   -out /etc/postgresql/ssl/server.crt \
   -subj "/CN=192.168.56.102"
 ```
+PostgreSQL és extremadament estricte. Si els permisos són massa "oberts", el servidor ignorarà el SSL per seguretat.
+
+Donem la propietat a l'usuari de la base de dades
+```
+sudo chown postgres:postgres /etc/postgresql/ssl/server.key /etc/postgresql/ssl/server.crt
+```
+
+Només l'usuari postgres pot llegir la clau privada
+```
+sudo chmod 600 /etc/postgresql/ssl/server.key
+```
+
+El certificat pot ser llegit per tothom
+```
+sudo chmod 644 /etc/postgresql/ssl/server.crt
+```
+
+Fitxer per activar el SSL en el postgres
+```
+sudo nano /etc/postgresql/16/main/postgresql.conf
+```
+
+busquem aquesta part i ho posem com esta a continuaciò
+```
+ssl = on
+ssl_cert_file = '/etc/postgresql/ssl/server.crt'
+ssl_key_file = '/etc/postgresql/ssl/server.key'
+```
+
+Reiniciem el potgres pq es guardi la configuraciò
+```
+sudo systemctl restart postgresql
+```
 
 
 Guia de Configuració SSL per a PostgreSQL Aquest document detalla com preparar i automatitzar la seguretat SSL al servidor.
