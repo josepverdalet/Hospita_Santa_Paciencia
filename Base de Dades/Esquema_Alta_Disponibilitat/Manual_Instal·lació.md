@@ -123,6 +123,7 @@ Contingut de l'script:
     ls -lh /var/backups/postgres
 
 5.3. Automatització amb Crontab
+
 Editem el crontab (crontab -e) i afegim:
 
     00 03 * * * /home/vicifu007/scripts/backup_bd.sh
