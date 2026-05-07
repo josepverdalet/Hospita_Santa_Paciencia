@@ -29,6 +29,7 @@ Accedim a PostgreSQL i creem el rol amb permisos específics per a la rèplica:
     sudo -u postgres psql -c "CREATE ROLE replica_user REPLICATION LOGIN PASSWORD '1234';"
 
 2.2. Configuració del fitxer postgresql.conf
+
 Editem el fitxer de configuració principal:
 
     sudo nano /etc/postgresql/16/main/postgresql.conf
@@ -42,7 +43,10 @@ WAL Level: wal_level = replica
 Canals de sortida: max_wal_senders = 10
 
 2.3. Configuració d'accés (pg_hba.conf)
-Hem de permetre que el Node 2 es connecti. Editem el fitxer d'autenticació:
+
+Hem de permetre que el Node 2 es connecti. 
+
+Editem el fitxer d'autenticació:
 
     sudo nano /etc/postgresql/16/main/pg_hba.conf
 
