@@ -4,7 +4,7 @@ Aquesta comanda crea el certificat (.crt) i la clau privada (.key) alhora:
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
   -keyout /etc/postgresql/ssl/server.key \
   -out /etc/postgresql/ssl/server.crt \
-  -subj "/CN=192.168.56.102"
+  -subj "/CN=192.168.56.103"
 ```
 PostgreSQL és extremadament estricte 
 
@@ -61,7 +61,7 @@ Crea el fitxer /usr/local/bin/renovar-postgres-ssl.sh:
 #!/bin/bash
 DIES=365
 RUTA="/etc/postgresql/ssl"
-IP_VM="192.168.56.102"
+IP_VM="192.168.56.103"
 #Generar certificat i clau
 openssl req -x509-nodes -days $DIES -newkey rsa:4096 \ -keyout $RUTA/server.key \ -out $RUTA/server.crt \ -subj "/CN=$IP_VM"
 #Ajustar permisos
