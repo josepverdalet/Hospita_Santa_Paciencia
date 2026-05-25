@@ -10,6 +10,12 @@ CREATE ROLE vari;
 CREATE ROLE zelador;
 
 -- ============================================================
+-- Donar permis esquema
+-- ============================================================
+
+GRANT USAGE ON SCHEMA hospital TO dba, administracio, medic, infermeria, vari, zelador;
+
+-- ============================================================
 -- DBA
 -- ============================================================
 
