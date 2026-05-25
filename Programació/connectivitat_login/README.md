@@ -23,7 +23,7 @@ seguretat.py: Conté tota la lògica de seguretat. S'encarrega de xifrar el fitx
 
 database.py: Centralitza la configuració de la base de dades. Aquí es defineixen els paràmetres de connexió (host, usuari, contrasenya de la BD).
 
-requirements.txt: Llista de llibreries externes necessàries perquè el projecte funcioni en qualsevol ordinador.
+Llibrerias necessarias: psycopg2-binary, bcrypt, cryptography
 
 Instal·lació i Configuració
 1. Clonar el repositori i crear l'entorn virtual
