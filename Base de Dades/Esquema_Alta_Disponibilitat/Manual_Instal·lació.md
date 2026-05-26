@@ -36,11 +36,11 @@ Editem el fitxer de configuració principal:
 
 Modifiquem els següents paràmetres (treient el símbol # si és necessari):
 
-Xarxa: listen_addresses = '*'
+    listen_addresses = '*'
 
-WAL Level: wal_level = replica
+    wal_level = replica
 
-Canals de sortida: max_wal_senders = 10
+    max_wal_senders = 10
 
 2.3. Configuració d'accés (pg_hba.conf)
 
