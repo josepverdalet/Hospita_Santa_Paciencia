@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # Inicialitzem Faker en espanyol per a noms, cognoms i adreces
 fake = Faker('es_ES')
 
-# La teva configuració exacta del servidor Ubuntu
+# Configuració del servidor Ubuntu
 DB_PARAMS = {
     "host": "192.168.56.103",
     "database": "hospital_santa_paciencia",
@@ -31,14 +31,14 @@ def ejecutar_generacio_directa():
         print(f"❌ Error de conexión al servidor Ubuntu (192.168.56.103): {e}")
         return
 
-    print("🚀 [PYTHON] ¡Conectado correctamente! Iniciando vaciado e inserción masiva...")
+    print("[PYTHON] ¡Conectat correctament!")
     
     try:
         # Forcem l'esquema 'hospital'
         cursor.execute("SET search_path TO hospital;")
 
         # --- A. NETEJA EN CASCADA ---
-        print("🧹 Vaciando tablas antiguas en el esquema 'hospital'...")
+        print(" Buidant taules...")
         taules = [
             "RECEPTE", "ASSISTEIX", "ASSIGNA", "RESERVA", "VISITA", "OPERACIO", 
             "APARELL_MEDIC", "HABITACIO", "QUIROFAN", "PLANTA", "MEDIC", 
@@ -48,7 +48,7 @@ def ejecutar_generacio_directa():
             cursor.execute(f"TRUNCATE TABLE {taula} RESTART IDENTITY CASCADE;")
 
         # --- B. TREBALLADORS ---
-        print("➡️ Generando 400 Trabajadores...")
+        print(" Generant 400 Treballadors...")
         treballadors_data = []
         for i in range(1, 401):
             dni_trabajador = calcular_dni_real(10000000 + i)
@@ -63,24 +63,24 @@ def ejecutar_generacio_directa():
         ids_varis = list(range(301, 401))       
         
         # --- C. MEDICS ---
-        print("➡️ Generando Médicos...")
+        print(" Generant Metges...")
         especialitats = ['Pediatria', 'Cardiologia', 'Traumatologia', 'Medicina General', 'Urgències', 'Neurologia', 'Ginecologia']
         medics_data = [(id_emp, random.choice(especialitats), "Universitat de Barcelona", "CV exten...") for id_emp in ids_medics]
         execute_values(cursor, "INSERT INTO MEDIC (id_empleat, especialitat, estudi, cv) VALUES %s", medics_data)
         
         # --- D. INFERMERIA ---
-        print("➡️ Generando Enfermería...")
+        print("➡️ Generant Infermeria...")
         infermeria_data = [(id_emp, random.randint(1, 25), random.choice(['Matí', 'Tarda', 'Nit'])) for id_emp in ids_infermers]
         execute_values(cursor, "INSERT INTO INFERMERIA (id_empleat, experiencia, disponibilitat) VALUES %s", infermeria_data)
         
         # --- E. VARI ---
-        print("➡️ Generando Personal Vario...")
+        print("➡️ Generant Personal Vari...")
         tipus_feina_llista = ['Neteja', 'Administració', 'Manteniment', 'Seguretat']
         vari_data = [(id_emp, random.choice(tipus_feina_llista)) for id_emp in ids_varis]
         execute_values(cursor, "INSERT INTO VARI (id_empleat, tipus_feina) VALUES %s", vari_data)
         
         # --- F. PLANTA ---
-        print("➡️ Generando Plantas (sin columna de empleado)...")
+        print("➡️ Generant Plantas...")
         plantes_data = []
         tipus_plantes = ['Urgències', 'Pediatria', 'Planta General A', 'Planta General B', 'Maternitat']
         for i in range(1, 6):
@@ -88,7 +88,7 @@ def ejecutar_generacio_directa():
         execute_values(cursor, "INSERT INTO PLANTA (id_planta, numero, tipus) VALUES %s", plantes_data)
         
         # --- G. HABITACIONS I QUIROFANS ---
-        print("➡️ Generando Habitaciones y Quirófanos...")
+        print("➡️ Generant Habitacions y Quirófans...")
         habitacions_data = []
         id_hab = 1
         for id_planta in range(1, 6):
@@ -103,19 +103,19 @@ def ejecutar_generacio_directa():
         execute_values(cursor, "INSERT INTO QUIROFAN (id_quirofan, tipus, id_planta) VALUES %s", quirofans_data)
         
         # --- H. APARELL_MEDIC ---
-        print("➡️ Generando Aparatos Médicos...")
+        print(" Generant Aparells Médics...")
         aparells = ['Desfibril·lador', 'Monitor de Constants', 'Ecocardiògraf', 'Respirador']
         aparells_data = [(i, random.choice(aparells), random.randint(1, 3), random.randint(1, 5)) for i in range(1, 21)]
         execute_values(cursor, "INSERT INTO APARELL_MEDIC (id_serie, tipus, quantitat, id_quirofan) VALUES %s", aparells_data)
 
         # --- I. MEDICAMENTS ---
-        print("➡️ Generando Medicamentos...")
+        print("➡️ Generant Medicaments...")
         noms_medicaments = ['Paracetamol 1g', 'Ibuprofèn 600mg', 'Amoxicil·lina 500mg', 'Omeprazol 20mg', 'Aspirina 100mg', 'Nolotil', 'Diazepam']
         medicaments_data = [(i, nom, random.randint(10, 500)) for i, nom in enumerate(noms_medicaments, start=1)]
         execute_values(cursor, "INSERT INTO MEDICAMENT (id_medicament, nom, stock) VALUES %s", medicaments_data)
 
-        # --- J. PACIENTS (⚠️ 50.000 REGISTRES) ---
-        print("➡️ Generando 50.000 Pacientes...")
+        # --- J. PACIENTS ( 50.000 REGISTRES) ---
+        print(" Generant 50.000 Pacients...")
         pacients_data = []
         for i in range(1, 50001):
             dni_paciente = calcular_dni_real(20000000 + i)
@@ -124,8 +124,8 @@ def ejecutar_generacio_directa():
             ))
         execute_values(cursor, "INSERT INTO PACIENT (id_pacient, dni, nom, cognom, email, telefon) VALUES %s", pacients_data)
 
-        # --- K. VISITES (⚠️ 100.000 REGISTRES) ---
-        print("➡️ Generando 100.000 Visitas...")
+        # --- K. VISITES ( 100.000 REGISTRES) ---
+        print(" Generant 100.000 Visitas...")
         visites_data = []
         diagnostics = ['Constipat comú', 'Grip A', 'Esquinç de tormell', 'Dolor abdominal', 'Revisió rutinària', 'Cefalea', 'Hipertensió']
         for i in range(1, 100001):
@@ -137,7 +137,7 @@ def ejecutar_generacio_directa():
         execute_values(cursor, "INSERT INTO VISITA (id_visita, dia, hora, diagnostic, id_pacient, id_medic) VALUES %s", visites_data)
 
         # --- L. OPERACIONS, RESERVES I RELACIONS ---
-        print("➡️ Generando Operaciones y Reservas (sin columna 'nom' en OPERACIO)...")
+        print(" Generant Operacions y Reservas...")
         operacions_data = []
         for i in range(1, 501):
             # Eliminat el random.choice(noms_operacions)
@@ -158,24 +158,24 @@ def ejecutar_generacio_directa():
             ))
         execute_values(cursor, "INSERT INTO RESERVA (id_reserva, dia_ingres, hora_ingres, dia_sortida, hora_sortida, motiu, id_habitacio, id_pacient, id_quirofan, id_medic) VALUES %s", reserves_data)
 
-        print("➡️ Vinculando Recetas...")
+        print(" Vinculant Receptes...")
         receptes_data = set()
         while len(receptes_data) < 5000:
             receptes_data.add((random.randint(1, len(noms_medicaments)), random.randint(1, 100000)))
         execute_values(cursor, "INSERT INTO RECEPTE (id_medicament, id_visita) VALUES %s", list(receptes_data))
 
-        print("➡️ Vinculando Asignaciones de Planta...")
+        print(" Vinculant Asignacions de Planta...")
         assigna_data = set()
         for id_inf in ids_infermers:
             assigna_data.add((id_inf, random.randint(1, 5)))
         execute_values(cursor, "INSERT INTO ASSIGNA (id_empleat, id_planta) VALUES %s", list(assigna_data))
 
         conn.commit()
-        print("🎉 [ÉXITO] ¡DUMMY DATA GENERADO CORRECTAMENTE EN TU SERVIDOR UBUNTU!")
+        print("[ÉXIT] ¡DUMMY DATA GENERATCORRECTAMENT")
 
     except Exception as e:
         conn.rollback()
-        print(f"❌ Error durante la inserción de datos: {e}")
+        print(f" Error durant la inserció de dades: {e}")
     finally:
         cursor.close()
         conn.close()
